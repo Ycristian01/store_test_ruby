@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'stores#index'
   
   resources :stores
-  resources :users
+  resources :users do
+    resources :shipping_addresses
+  end
   resources :orders
   resources :products
 

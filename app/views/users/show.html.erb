@@ -2,3 +2,6 @@
 
 
 <%= @user.email %>
+<%= @user.name %>
+<%= @user.phone %>
+<%=link_to "shipping_addresses", user_shipping_addresses_path(@user.id) %>

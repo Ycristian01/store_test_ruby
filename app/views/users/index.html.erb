@@ -7,7 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col">Phone</th>
       <th scope="col">Principal shipping address</th>
-      <th colspan="3"></th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
    <tbody>
@@ -17,6 +17,9 @@
           <td><%= user.name %></td>
           <td><%= user.phone %></td>
           <td><%= user.shipping_addresses.find(user.primary_sa_id).street_number %></td>
+          <td><%= link_to "Show", user, class:"btn btn-primary btn-sm" %></td>
+          <td><%= link_to "Edit", edit_user_path(user), class:"btn btn-primary btn-sm" %></td>
+          <td><%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" %></td>
         </tr>
       <% end %>
   </tbody>
