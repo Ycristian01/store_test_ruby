@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_011420) do
+ActiveRecord::Schema.define(version: 2022_05_11_001106) do
 
   create_table "bought_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "product_id", null: false
     t.bigint "order_id", null: false
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_id"
     t.index ["order_id"], name: "index_bought_products_on_order_id"
-    t.index ["product_id"], name: "index_bought_products_on_product_id"
   end
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -29,8 +28,7 @@ ActiveRecord::Schema.define(version: 2022_05_10_011420) do
     t.float "total_value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "shipping_address_id", null: false
-    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
+    t.integer "shipping_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -51,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_05_10_011420) do
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_shipping_addresses_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -61,12 +61,14 @@ ActiveRecord::Schema.define(version: 2022_05_10_011420) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "phone"
+    t.string "name"
+    t.integer "primary_sa_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "bought_products", "orders"
-  add_foreign_key "bought_products", "products"
-  add_foreign_key "orders", "shipping_addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "shipping_addresses", "users"
 end
