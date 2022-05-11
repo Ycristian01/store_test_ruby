@@ -1,0 +1,25 @@
+<h1>Product</h1>
+
+<table class = "table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+   <tbody>
+       <tr>
+          <td><%= @product.name %></td>
+          <td><%= @product.description %></td>
+          <td><%= @product.price %></td>
+          <td><%= @product.weight %></td>
+          <td><%= link_to "Edit", edit_product_path(@product.id), class:"btn btn-primary btn-sm" %></td>
+          <td><%= link_to "Delete", @product, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" %></td>
+        </tr>
+    </tbody>
+</table>
+
+<%= link_to "Back", products_path %>

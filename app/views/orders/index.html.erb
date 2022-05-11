@@ -1,0 +1,24 @@
+<h1>Orders list</h1>
+
+  <table class = "table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Shipping address</th>
+        <th scope="col">Payment type</th>
+        <th scope="col">List of products</th>
+        <th scope="col">Total order value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.name, order %></td>
+          <td><%= order.date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  

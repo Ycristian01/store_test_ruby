@@ -1,0 +1,34 @@
+<h1 class="index-title">Customers list</h1>
+
+<table class = "table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Principal shipping address</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+   <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.phone %></td>
+          <td>
+            <% if !user.primary_sa_id.nil? %>
+              <%= user.shipping_addresses.find(user.primary_sa_id).street_number %>
+            <% else %>
+              <%= "No shipping address" %>
+            <% end %>
+          </td>
+          <td><%= link_to "Show", user, class:"btn btn-primary btn-sm" %></td>
+           <% if user == current_user %>
+            <td><%= link_to "Edit", edit_user_registration_path, class:"btn btn-primary btn-sm" %></td>
+          <% end %>
+          <td><%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
