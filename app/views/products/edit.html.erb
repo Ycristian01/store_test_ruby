@@ -1,0 +1,7 @@
+<h1 class="index-title">Editing Product</h1>
+<%= render 'form', user: @product %>
+
+<div class="d-flex actions edit-back-form">
+  <%= button_to "Show", @product, :method => "get", class:"btn btn-info btn-sm" %>
+  <%= button_to "Back", products_path, :method => "get", class:"btn btn-warning btn-sm back"%>
+</div>
