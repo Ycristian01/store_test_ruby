@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   resources :stores
   resources :users,  except:[:create, :show, :destroy, :edit, :update] do
+    resources :orders, only: [:index, :show, :new, :create]
     resources :shipping_addresses
   end
   get '/users/:id', to: 'users#show', as: 'user'
